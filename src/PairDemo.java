@@ -1,5 +1,7 @@
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /*
         Реализуйте generic-класс Pair, похожий на Optional, но содержащий пару элементов разных типов и не запрещающий элементам
@@ -11,10 +13,22 @@ import java.util.Optional;
 public class PairDemo {
     public static void main(String[] args) {
         Pair<Integer,String> pair = Pair.of(1, "Hello");
+        Pair<Integer,String> pair2 = Pair.of(1, "Hello");
        // Optional<Integer> optional = new Optional<>();
         Integer i = pair.getFirst(); // 1
         String s = pair.getSecond(); // "hello"
         System.out.printf("key: %d, value: %s",i,s);
+        System.out.println();
+
+        boolean b1 = pair.equals(pair2);
+        boolean b2 = pair.hashCode()== pair2.hashCode();
+
+        System.out.println(b1+" "+ b2);
+
+        pair.ifPresent((first, second) -> {
+            System.out.println(first);
+            System.out.println(second);
+        });
 
     }
 }
@@ -66,4 +80,11 @@ class Pair <K,V> {
     public int hashCode() {
         return Objects.hash(key, value);
     }
+
+    public void ifPresent(BiConsumer<? super K, ? super V> action) {
+        if (key!= null && value!=null) {
+            action.accept(key, value);
+        }
+    }
+
 }
