@@ -5,6 +5,13 @@ import java.util.List;
 
 
 public class Group{
+    @Override
+    public String toString() {
+        return "Group{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
     String name;
     List<Person> persons = new ArrayList<>();
 
