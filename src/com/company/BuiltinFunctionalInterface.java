@@ -40,8 +40,14 @@ public class BuiltinFunctionalInterface {
 
         //Optional контейнер
         Optional<String> empty = Optional.empty();
+        if(!empty.isEmpty())
         System.out.println(empty.get());
 
+        Optional<String> noEmpty= Optional.of("");
+        System.out.println(noEmpty.isPresent());
+
+        Optional<String>  nullable = Optional.ofNullable(null);
+        System.out.println(nullable.isPresent());
 
 
 
